@@ -3,7 +3,8 @@
 import { useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { IconBrandGoogle, IconUserCheck, IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
+import { IconBrandGoogle, IconUserCheck, IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
@@ -50,6 +51,10 @@ function TraineeLoginForm() {
 
   return (
     <div className="max-w-md w-full bg-[#FAF9F6]/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 mb-6 transition-colors">
+        <IconArrowLeft size={16} /> Back to Homepage
+      </Link>
+
       <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Continue Learning</h1>
         <p className="text-slate-600 text-sm">
@@ -128,14 +133,25 @@ function TraineeLoginForm() {
       <div className="mt-6 pt-6 border-t border-slate-200 text-center">
         <button
           onClick={() => signIn("google", { callbackUrl: "/trainee/dashboard" })}
-          className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 py-2.5 rounded-xl font-medium text-sm transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 py-2.5 rounded-xl font-medium text-sm transition-colors cursor-pointer"
         >
           <IconBrandGoogle className="w-5 h-5" />
           <span>Sign in with Google</span>
         </button>
-        <span className="block text-[11px] text-slate-400 mt-2">
-          (Google OAuth requires live Google Client ID in .env)
-        </span>
+      </div>
+
+      {/* Switch Portals */}
+      <div className="mt-8 pt-6 border-t border-slate-200 text-center space-y-2">
+        <p className="text-xs text-slate-500">Need another portal?</p>
+        <div className="flex justify-center gap-4 text-xs font-medium">
+          <Link href="/trainer/login" className="text-teal-800 hover:underline">
+            Teacher / Trainer Portal
+          </Link>
+          <span className="text-slate-300">•</span>
+          <Link href="/admin/login" className="text-amber-800 hover:underline">
+            Admin Portal
+          </Link>
+        </div>
       </div>
     </div>
   );

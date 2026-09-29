@@ -10,8 +10,19 @@ export async function GET() {
 
   const courses = await prisma.course.findMany({
     where: { status: "PUBLISHED" },
-    include: { trainer: { select: { name: true } } },
+    include: {
+      trainer: {
+        select: { id: true, name: true, email: true, image: true },
+      },
+      quizzes: {
+        select: { id: true, title: true },
+      },
+      resources: {
+        select: { id: true, title: true, type: true },
+      },
+    },
+    orderBy: { createdAt: "desc" },
   });
-  
+
   return NextResponse.json(courses);
 }

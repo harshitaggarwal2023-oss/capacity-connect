@@ -21,7 +21,13 @@ export async function GET() {
     where: { userId: session.user.id }
   });
 
-  return NextResponse.json(profile || {});
+  return NextResponse.json({
+    userId: session.user.id,
+    name: session.user.name,
+    email: session.user.email,
+    role: (session.user as any).role || "TRAINEE",
+    ...(profile || {}),
+  });
 }
 
 export async function PATCH(request: Request) {

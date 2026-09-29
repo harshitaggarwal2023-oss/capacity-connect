@@ -11,6 +11,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   providers: [
     Google({
+      clientId: process.env.GOOGLE_CLIENT_ID || process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || process.env.AUTH_GOOGLE_SECRET,
       profile(profile) {
         return {
           id: profile.sub,
@@ -41,16 +43,26 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role;
+        token.role = (user as any).role || "TRAINEE";
         token.id = user.id;
+      } else if (!token.role && token.email) {
+        const dbUser = await prisma.user.findUnique({
+          where: { email: token.email },
+        });
+        if (dbUser) {
+          token.role = dbUser.role;
+          token.id = dbUser.id;
+        }
       }
       return token;
     },
-    session({ session, token }) {
-      (session.user as any).role = token.role;
-      (session.user as any).id = token.id;
+    async session({ session, token }) {
+      if (session?.user) {
+        (session.user as any).role = token.role || "TRAINEE";
+        (session.user as any).id = token.id;
+      }
       return session;
     },
   },

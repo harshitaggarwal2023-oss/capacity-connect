@@ -6,7 +6,7 @@ import { AnnouncementsFeed } from "@/components/landing/announcements-feed";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
-import { Navbar, NavbarLogo, NavBody, NavItems, NavbarButton } from "@/components/ui/resizable-navbar";
+import { LandingNavbar } from "@/components/landing-navbar";
 
 export const revalidate = 60;
 
@@ -24,24 +24,7 @@ export default async function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] font-plus-jakarta">
-      <Navbar>
-        <NavbarLogo />
-        <NavBody>
-          <NavItems items={[
-            { name: "Features", link: "#features" },
-            { name: "How it Works", link: "#demo" },
-            { name: "Portals", link: "#portals" },
-          ]} />
-          <div className="flex items-center gap-4">
-            <Link href="/trainee/login">
-              <NavbarButton variant="secondary">Log In</NavbarButton>
-            </Link>
-            <Link href="/trainee/signup">
-              <LiquidMetalButton label="Get Started" />
-            </Link>
-          </div>
-        </NavBody>
-      </Navbar>
+      <LandingNavbar />
       
       <main className="pt-20">
         <Hero />

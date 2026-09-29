@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  # Isolated PostgreSQL Database for Capacity Connect (port 5434 - AttendX is on 5433)
+  capacity-db:
+    image: postgres:16-alpine
+    container_name: capacity-connect-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: capacity_admin
+      POSTGRES_PASSWORD: capacity_secure_password_2026
+      POSTGRES_DB: capacity_connect
+    ports:
+      - "5434:5432"
+    volumes:
+      - capacity_postgres_data:/var/lib/postgresql/data
+    networks:
+      - capacity_net
+
+  # Isolated Redis for Socket.io & Background Jobs (port 6380 - leaves 6379 untouched)
+  capacity-redis:
+    image: redis:7-alpine
+    container_name: capacity-connect-redis
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - capacity_redis_data:/data
+    networks:
+      - capacity_net
+
+  # Capacity Connect Next.js + Socket.io Server (port 3000 & 3001 - AttendX is on 8001)
+  capacity-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: capacity-connect-app
+    restart: always
+    depends_on:
+      - capacity-db
+      - capacity-redis
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://capacity_admin:capacity_secure_password_2026@capacity-db:5432/capacity_connect?schema=public
+      - REDIS_URL=redis://capacity-redis:6379
+      - NEXTAUTH_URL=http://16.4.34.30.nip.io:3000
+      - NEXTAUTH_SECRET=capacity_connect_production_secret_key_84920482048
+      - NEXT_PUBLIC_APP_URL=http://16.4.34.30.nip.io:3000
+      - NEXT_PUBLIC_SOCKET_URL=http://16.4.34.30.nip.io:3001
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    networks:
+      - capacity_net
+
+volumes:
+  capacity_postgres_data:
+  capacity_redis_data:
+
+networks:
+  capacity_net:
+    driver: bridge

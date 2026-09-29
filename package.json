@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:socket": "ts-node --project server/tsconfig.json server/index.ts",
+    "start:socket": "ts-node --project server/tsconfig.json server/index.ts",
     "build": "next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "lint": "eslint",
     "seed": "ts-node prisma/seed.ts"
   },

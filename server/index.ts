@@ -12,7 +12,18 @@ const redisUrl = process.env.REDIS_URL;
 
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    origin: (origin, callback) => {
+      // Allow any origin ending with vercel.app or matching NEXT_PUBLIC_APP_URL or localhost
+      if (!origin) return callback(null, true);
+      if (
+        origin.endsWith(".vercel.app") ||
+        origin.includes("localhost") ||
+        origin === process.env.NEXT_PUBLIC_APP_URL
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   },
 });
@@ -122,7 +133,7 @@ app.get("/health", (_, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-const PORT = process.env.SOCKET_PORT || 3001;
+const PORT = process.env.PORT || process.env.SOCKET_PORT || 3001;
 httpServer.listen(PORT, () => {
   console.log(`CAPACITY CONNECT Real-time Socket.io server running on port ${PORT}`);
 });
