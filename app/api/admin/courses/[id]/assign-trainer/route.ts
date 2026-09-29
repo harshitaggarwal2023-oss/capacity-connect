@@ -7,14 +7,15 @@ const schema = z.object({
   trainerId: z.string(),
 });
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, context: { params: Promise<{ id: string }> }) {
   try {
     await requireRole("ADMIN");
+    const { id } = await context.params;
     const body = await req.json();
     const { trainerId } = schema.parse(body);
 
     const course = await prisma.course.update({
-      where: { id: params.id },
+      where: { id },
       data: { trainerId },
     });
 

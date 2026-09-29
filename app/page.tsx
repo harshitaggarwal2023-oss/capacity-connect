@@ -11,10 +11,16 @@ import { Navbar, NavbarLogo, NavBody, NavItems, NavbarButton } from "@/component
 export const revalidate = 60;
 
 export default async function LandingPage() {
-  const announcements = await prisma.announcement.findMany({
-    take: 4,
-    orderBy: { publishedAt: "desc" },
-  });
+  let announcements: any[] = [];
+  try {
+    announcements = await prisma.announcement.findMany({
+      take: 4,
+      orderBy: { publishedAt: "desc" },
+    });
+  } catch (err) {
+    // Graceful fallback during build or offline database
+    announcements = [];
+  }
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] font-plus-jakarta">

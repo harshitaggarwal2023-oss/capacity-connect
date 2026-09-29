@@ -13,12 +13,13 @@ function getResourceIcon(type: string) {
   }
 }
 
-export default async function CourseDetailPage({ params }: { params: { id: string } }) {
+export default async function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session?.user?.id) return null;
+  const { id } = await params;
 
   const course = await prisma.course.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       resources: true,
       quizzes: {

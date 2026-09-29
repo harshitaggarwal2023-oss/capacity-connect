@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 
 function LiquidMetalButton({ onClick, children, className = "" }: any) {
@@ -14,7 +14,8 @@ function LiquidMetalButton({ onClick, children, className = "" }: any) {
   );
 }
 
-export default function AssessmentPage({ params }: { params: { id: string } }) {
+export default function AssessmentPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [questions, setQuestions] = useState<any[]>([]);
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [attemptId, setAttemptId] = useState<string | null>(null);
@@ -33,7 +34,7 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     async function startQuiz() {
-      const res = await fetch(`/api/assessments/${params.id}/start`, { method: "POST" });
+      const res = await fetch(`/api/assessments/${id}/start`, { method: "POST" });
       if (res.ok) {
         const data = await res.json();
         setAttemptId(data.attemptId);
@@ -43,7 +44,7 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
       }
     }
     startQuiz();
-  }, [params.id]);
+  }, [id]);
 
   useEffect(() => {
     if (!endTime || submitted) return;
@@ -70,7 +71,7 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
     setShowConfirm(false);
     if (!attemptId) return;
     
-    const res = await fetch(`/api/assessments/${params.id}/submit`, {
+    const res = await fetch(`/api/assessments/${id}/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ attemptId, answers }),

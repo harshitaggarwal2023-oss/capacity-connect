@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/auth-helpers";
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, context: { params: Promise<{ id: string }> }) {
   try {
     await requireRole("ADMIN");
+    const { id } = await context.params;
     const user = await prisma.user.update({
-      where: { id: params.id },
+      where: { id },
       data: { status: "REJECTED" },
     });
     return NextResponse.json({ success: true, user });

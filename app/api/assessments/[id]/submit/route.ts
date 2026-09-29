@@ -8,18 +8,19 @@ const submitSchema = z.object({
   answers: z.array(z.number()),
 });
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, context: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   
   const userId = (session.user as any).id;
-  
+  const { id } = await context.params;
+
   try {
     const body = await req.json();
     const { attemptId, answers } = submitSchema.parse(body);
     
     const attempt = await prisma.attempt.findFirst({
-      where: { id: attemptId, quizId: params.id, traineeId: userId, status: "ONGOING" },
+      where: { id: attemptId, quizId: id, traineeId: userId, status: "ONGOING" },
       include: { quiz: { include: { questions: true } } },
     });
     

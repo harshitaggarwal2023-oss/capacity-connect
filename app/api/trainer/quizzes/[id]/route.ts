@@ -3,12 +3,14 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, context: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session || (session.user as any).role !== "TRAINER") return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const { id } = await context.params;
+
   const quiz = await prisma.quiz.findFirst({
-    where: { id: params.id, course: { trainerId: (session.user as any).id } },
+    where: { id, course: { trainerId: (session.user as any).id } },
     include: { 
       questions: true,
       attempts: { include: { user: { select: { name: true } } } }
@@ -53,12 +55,14 @@ const patchSchema = z.object({
   })).optional(),
 });
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, context: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session || (session.user as any).role !== "TRAINER") return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const { id } = await context.params;
+
   const quizCheck = await prisma.quiz.findFirst({
-    where: { id: params.id, course: { trainerId: (session.user as any).id } }
+    where: { id, course: { trainerId: (session.user as any).id } }
   });
   if (!quizCheck) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -71,14 +75,14 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     if (data.deadline) updateData.deadline = new Date(data.deadline);
 
     if (data.questions) {
-      await prisma.question.deleteMany({ where: { quizId: params.id } });
+      await prisma.question.deleteMany({ where: { quizId: id } });
       updateData.questions = {
         create: data.questions
       };
     }
 
     const updated = await prisma.quiz.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData
     });
 
