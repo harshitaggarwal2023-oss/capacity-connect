@@ -156,6 +156,52 @@ async function main() {
     console.log("Sample announcement published.");
   }
 
+  // 5. Sample Trainee account
+  const traineePasswordHash = await bcrypt.hash("trainee123", 12);
+  const trainee = await prisma.user.upsert({
+    where: { email: "trainee@capacityconnect.in" },
+    update: {
+      passwordHash: traineePasswordHash,
+      role: "TRAINEE",
+      status: "APPROVED",
+    },
+    create: {
+      email: "trainee@capacityconnect.in",
+      name: "Rahul Verma",
+      passwordHash: traineePasswordHash,
+      role: "TRAINEE",
+      status: "APPROVED",
+      profile: {
+        create: {
+          fullName: "Rahul Verma",
+          qualifications: ["Bachelor of Technology in Computer Science"],
+          skills: ["Digital Services", "Information Security Basics", "Public Administration"],
+          experience: "Junior Administrative Associate at State Secretariat",
+          yearsExp: 2,
+        },
+      },
+    },
+  });
+  console.log("Trainee seeded:", trainee.email);
+
+  if (course) {
+    await prisma.enrollment.upsert({
+      where: {
+        traineeId_courseId: {
+          traineeId: trainee.id,
+          courseId: course.id,
+        },
+      },
+      update: {},
+      create: {
+        traineeId: trainee.id,
+        courseId: course.id,
+        progress: 25,
+      },
+    });
+    console.log("Trainee enrolled in course:", course.title);
+  }
+
   console.log("Seeding complete!");
 }
 
