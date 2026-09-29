@@ -23,7 +23,7 @@ export const Navbar = ({ children }: { children: React.ReactNode }) => {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled ? "py-2 backdrop-blur-md bg-white/70 shadow-sm border-b border-slate-200/50" : "py-4 bg-transparent"
+        scrolled ? "py-2 backdrop-blur-md bg-[\#FAF9F6]/70 shadow-sm border-b border-slate-200/50" : "py-4 bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -92,7 +92,7 @@ export const MobileNavMenu = ({ isOpen, items, onClose }: { isOpen: boolean; ite
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: 0 }}
-        className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg overflow-hidden md:hidden"
+        className="absolute top-full left-0 right-0 bg-[\#FAF9F6] border-b border-slate-200 shadow-lg overflow-hidden md:hidden"
       >
         <div className="px-4 py-6 space-y-4 flex flex-col">
           {items.map((item) => (

@@ -100,7 +100,7 @@ export default function QuizEditorPage() {
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Questions</h3>
               {formData.questions.map((q, qIndex) => (
-                <div key={qIndex} className="p-4 border rounded relative bg-white">
+                <div key={qIndex} className="p-4 border rounded relative bg-[\#FAF9F6]">
                   <Button type="button" variant="ghost" className="absolute top-2 right-2 text-red-500" onClick={() => setFormData({...formData, questions: formData.questions.filter((_, i) => i !== qIndex)})}>
                     <IconTrash className="h-4 w-4" />
                   </Button>

@@ -58,7 +58,7 @@ export const MetalButton = React.forwardRef<HTMLButtonElement, MetalButtonProps>
         onClick={handleClick}
         {...props}
       >
-        <div className="absolute inset-0 bg-white/20 opacity-0 hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-[\#FAF9F6]/20 opacity-0 hover:opacity-100 transition-opacity" />
         <AnimatePresence>
           {ripples.map((ripple) => (
             <motion.span
@@ -67,7 +67,7 @@ export const MetalButton = React.forwardRef<HTMLButtonElement, MetalButtonProps>
               animate={{ scale: 15, opacity: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bg-white/40 rounded-full pointer-events-none"
+              className="absolute bg-[\#FAF9F6]/40 rounded-full pointer-events-none"
               style={{
                 left: ripple.x,
                 top: ripple.y,
@@ -141,7 +141,7 @@ export const LiquidButton = React.forwardRef<HTMLButtonElement, LiquidButtonProp
                 animate={{ scale: 20, opacity: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="absolute bg-white/40 rounded-full pointer-events-none z-0"
+                className="absolute bg-[\#FAF9F6]/40 rounded-full pointer-events-none z-0"
                 style={{
                   left: ripple.x,
                   top: ripple.y,

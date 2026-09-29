@@ -4,18 +4,18 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
   variable: "--font-plus-jakarta",
+  subsets: ["latin"],
 });
 
 const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
   variable: "--font-playfair",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "CAPACITY CONNECT",
-  description: "Platform for continuous learning and training",
+  description: "Digital Capacity Building and Learning Management Portal",
 };
 
 export default function RootLayout({
@@ -24,11 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${playfairDisplay.variable}`}>
-      <body className={`font-sans antialiased bg-[#FAF9F6] min-h-screen flex flex-col`}>
-        <Providers>
-          {children}
-        </Providers>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${plusJakartaSans.variable} ${playfairDisplay.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

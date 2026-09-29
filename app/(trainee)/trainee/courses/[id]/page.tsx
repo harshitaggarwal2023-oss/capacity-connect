@@ -64,7 +64,7 @@ export default async function CourseDetailPage({ params }: { params: { id: strin
             ) : (
               <ul className="space-y-3">
                 {course.resources.map(res => (
-                  <li key={res.id} className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100">
+                  <li key={res.id} className="flex items-center gap-3 p-3 bg-[\#FAF9F6] rounded-lg border border-gray-100">
                     {getResourceIcon(res.type)}
                     <a href={res.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">
                       {res.title}
@@ -82,7 +82,7 @@ export default async function CourseDetailPage({ params }: { params: { id: strin
             ) : (
               <ul className="space-y-3">
                 {course.quizzes.map(quiz => (
-                  <li key={quiz.id} className="p-3 bg-white rounded-lg border border-gray-100">
+                  <li key={quiz.id} className="p-3 bg-[\#FAF9F6] rounded-lg border border-gray-100">
                     <p className="font-medium text-gray-900">{quiz.title}</p>
                     <p className="text-xs text-red-600 mt-1">Deadline: {quiz.deadline.toLocaleDateString()}</p>
                   </li>

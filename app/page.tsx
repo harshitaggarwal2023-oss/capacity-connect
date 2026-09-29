@@ -5,6 +5,7 @@ import { DemoSection } from "@/components/landing/demo-section";
 import { AnnouncementsFeed } from "@/components/landing/announcements-feed";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import { Navbar, NavbarLogo, NavBody, NavItems, NavbarButton } from "@/components/ui/resizable-navbar";
 
 export const revalidate = 60;
@@ -30,9 +31,9 @@ export default async function LandingPage() {
               <NavbarButton variant="secondary">Log In</NavbarButton>
             </Link>
             <Link href="/trainee/signup">
-              <button className="px-5 py-2 rounded-xl bg-gradient-to-b from-slate-200 to-slate-400 text-slate-900 text-sm font-semibold shadow-inner border border-slate-500 hover:from-slate-300 hover:to-slate-500 transition-all">
+              <LiquidMetalButton>
                 Get Started
-              </button>
+              </LiquidMetalButton>
             </Link>
           </div>
         </NavBody>

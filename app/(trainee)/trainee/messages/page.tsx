@@ -67,7 +67,7 @@ export default function MessagesPage() {
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8 bg-[#F7F4EF] h-[calc(100vh-4rem)]">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-full flex overflow-hidden">
+      <div className="bg-[\#FAF9F6] rounded-xl shadow-sm border border-gray-200 h-full flex overflow-hidden">
         
         {/* Sidebar */}
         <div className="w-1/3 border-r border-gray-200 bg-[#FAF9F6] p-4 flex flex-col">
@@ -91,7 +91,7 @@ export default function MessagesPage() {
         </div>
 
         {/* Chat Area */}
-        <div className="flex-1 flex flex-col bg-white">
+        <div className="flex-1 flex flex-col bg-[\#FAF9F6]">
           <div className="p-4 border-b border-gray-200 bg-[#FAF9F6]">
             <h3 className="font-bold text-gray-900">Chat</h3>
           </div>

@@ -41,7 +41,7 @@ export default function TrainerMessagesPage() {
             <div className="p-4 border-b font-bold">Messages</div>
             <div className="flex-1 overflow-auto p-4 space-y-4">
               {messages.map(m => (
-                <div key={m.id} className="p-3 bg-white rounded shadow-sm">
+                <div key={m.id} className="p-3 bg-[\#FAF9F6] rounded shadow-sm">
                   <p className="font-bold text-sm mb-1">{m.sender.name}</p>
                   <p>{m.content}</p>
                 </div>

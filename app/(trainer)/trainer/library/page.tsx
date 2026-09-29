@@ -117,7 +117,7 @@ export default function LibraryPage() {
               <h2 className="text-xl font-bold mb-4">{course.title}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {courseRes.map(r => (
-                  <Card key={r.id} className="bg-white">
+                  <Card key={r.id} className="bg-[\#FAF9F6]">
                     <CardContent className="p-4 flex items-center justify-between">
                       <div className="flex items-center gap-3 overflow-hidden">
                         {getIcon(r.type)}

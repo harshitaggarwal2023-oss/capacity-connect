@@ -55,7 +55,7 @@ export default async function AssessmentsPage() {
             }
 
             const content = (
-              <div className="flex items-center justify-between p-6 bg-white rounded-xl border border-gray-200 shadow-sm transition hover:shadow-md">
+              <div className="flex items-center justify-between p-6 bg-[\#FAF9F6] rounded-xl border border-gray-200 shadow-sm transition hover:shadow-md">
                 <div className="flex items-center gap-4">
                   {statusIcon}
                   <div>

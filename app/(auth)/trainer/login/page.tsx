@@ -32,7 +32,7 @@ export default function TrainerLoginPage() {
 
   return (
     <div className={`min-h-screen bg-[#F9F7F2] flex items-center justify-center p-4 ${plusJakartaSans.className}`}>
-      <div className="max-w-md w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div className="max-w-md w-full bg-[\#FAF9F6]/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Trainer Portal</h1>
           <p className="text-slate-600">Sign in to manage your courses and trainees.</p>

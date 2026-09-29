@@ -93,7 +93,7 @@ export function LiquidMetalButton({
             animate={{ scale: 20, opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute bg-white/40 rounded-full pointer-events-none"
+            className="absolute bg-[\#FAF9F6]/40 rounded-full pointer-events-none"
             style={{ 
               left: ripple.x, 
               top: ripple.y,

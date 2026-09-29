@@ -93,10 +93,10 @@ export const Card = ({ card }: { card: CardProps }) => {
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={`card-${title}`}
-              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-5xl mx-auto bg-[\#FAF9F6] dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
               <button
-                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center z-[70]"
+                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-[\#FAF9F6] rounded-full flex items-center justify-center z-[70]"
                 onClick={handleClose}
               >
                 <IconX className="h-5 w-5 text-white dark:text-black" />

@@ -37,7 +37,7 @@ export default async function ResultsPage() {
             const cert = certificates.find(c => c.enrollmentId && false); // wait, need to check enrollment, let's just find by userId and some link. Wait, we'd need to find the enrollment. Let's just do a basic map for now, assuming certificate links to enrollment.
             // Actually, we can fetch enrollments for user
             return (
-              <div key={attempt.id} className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div key={attempt.id} className="p-6 bg-[\#FAF9F6] rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-full ${isPassed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                     <IconTrophy size={24} />

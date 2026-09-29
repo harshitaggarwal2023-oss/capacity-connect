@@ -110,13 +110,13 @@ export function AppleSpotlight({ open, onClose, onSearch }: AppleSpotlightProps)
             </div>
 
             <div className="bg-slate-50 px-4 py-3 border-t border-slate-200 flex flex-wrap gap-2">
-              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-200 rounded-full hover:bg-slate-100">
+              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-[\#FAF9F6] border border-slate-200 rounded-full hover:bg-slate-100">
                 React
               </button>
-              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-200 rounded-full hover:bg-slate-100">
+              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-[\#FAF9F6] border border-slate-200 rounded-full hover:bg-slate-100">
                 Data Science
               </button>
-              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-200 rounded-full hover:bg-slate-100">
+              <button className="px-3 py-1.5 text-xs font-medium text-slate-600 bg-[\#FAF9F6] border border-slate-200 rounded-full hover:bg-slate-100">
                 Design Systems
               </button>
             </div>

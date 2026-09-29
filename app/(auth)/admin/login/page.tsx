@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className={`min-h-screen bg-[#F4F4F5] flex items-center justify-center p-4 ${plusJakartaSans.className}`}>
-      <div className="max-w-md w-full bg-white/60 backdrop-blur-md border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div className="max-w-md w-full bg-[\#FAF9F6]/60 backdrop-blur-md border border-slate-200 rounded-2xl p-8 shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Admin Portal</h1>
           <p className="text-slate-600">Sign in to manage the platform.</p>

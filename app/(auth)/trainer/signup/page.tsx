@@ -45,7 +45,7 @@ export default function TrainerSignupPage() {
   if (status === "success") {
     return (
       <div className={`min-h-screen bg-[#F9F7F2] flex items-center justify-center p-4 ${plusJakartaSans.className}`}>
-        <div className="max-w-md w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm text-center">
+        <div className="max-w-md w-full bg-[\#FAF9F6]/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Application Submitted</h1>
           <p className="text-slate-600 mb-6">
             Application submitted. Awaiting admin approval.
@@ -60,7 +60,7 @@ export default function TrainerSignupPage() {
 
   return (
     <div className={`min-h-screen bg-[#F9F7F2] flex items-center justify-center p-4 ${plusJakartaSans.className}`}>
-      <div className="max-w-md w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div className="max-w-md w-full bg-[\#FAF9F6]/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Apply as Trainer</h1>
           <p className="text-slate-600">Join our platform and share your knowledge.</p>
