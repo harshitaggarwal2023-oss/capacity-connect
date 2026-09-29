@@ -8,9 +8,7 @@ import { prisma } from "../lib/prisma";
 
 const app = express();
 const httpServer = createServer(app);
-const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
-const pubClient = new Redis(redisUrl);
-const subClient = pubClient.duplicate();
+const redisUrl = process.env.REDIS_URL;
 
 const io = new Server(httpServer, {
   cors: {
@@ -19,10 +17,18 @@ const io = new Server(httpServer, {
   },
 });
 
-try {
-  io.adapter(createAdapter(pubClient, subClient));
-} catch (err) {
-  console.warn("Redis adapter initialization skipped or failed, using memory adapter fallback:", err);
+if (redisUrl && redisUrl !== "redis://localhost:6379") {
+  try {
+    const pubClient = new Redis(redisUrl, { lazyConnect: true, maxRetriesPerRequest: 1 });
+    const subClient = pubClient.duplicate();
+    pubClient.on("error", () => {});
+    subClient.on("error", () => {});
+    io.adapter(createAdapter(pubClient, subClient));
+  } catch (err) {
+    console.warn("Using built-in memory adapter for Socket.io");
+  }
+} else {
+  console.log("Socket.io running with built-in memory adapter");
 }
 
 // JWT handshake authentication middleware
