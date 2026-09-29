@@ -21,7 +21,7 @@ export function AnnouncementsFeed({ announcements }: { announcements: Announceme
             if (item.type === "NEW_CONTENT") badgeClass = "bg-teal-100 text-teal-800";
 
             return (
-              <div key={item.id} className="break-inside-avoid bg-white border border-slate-200 rounded-xl p-6">
+              <div key={item.id} className="break-inside-avoid bg-[#FAF9F6] border border-slate-200 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${badgeClass}`}>
                     {item.type.replace("_", " ")}

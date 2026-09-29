@@ -85,7 +85,7 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
   if (submitted && result) {
     return (
       <div className="min-h-screen bg-[#F7F4EF] flex items-center justify-center p-6 text-slate-800">
-        <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-sm border border-slate-200 text-center">
+        <div className="max-w-md w-full bg-[#FAF9F6] p-8 rounded-xl shadow-sm border border-slate-200 text-center">
           <h2 className="text-3xl font-bold mb-4">Assessment Complete</h2>
           <div className="text-6xl font-bold mb-2">{result.score}%</div>
           <p className="text-xl mb-6">
@@ -111,14 +111,14 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-[#F7F4EF] text-slate-900 pb-24">
-      <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-200 p-4 shadow-sm z-10 flex justify-between items-center">
+      <div className="sticky top-0 bg-[#FAF9F6]/80 backdrop-blur-md border-b border-slate-200 p-4 shadow-sm z-10 flex justify-between items-center">
         <h1 className="font-bold text-xl">Assessment</h1>
         <div className="font-mono text-lg font-semibold bg-slate-100 px-3 py-1 rounded">{timeLeft}</div>
       </div>
       
       <div className="max-w-3xl mx-auto p-6 space-y-8 mt-6">
         {questions.map((q, qIndex) => (
-          <div key={q.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+          <div key={q.id} className="bg-[#FAF9F6] p-6 rounded-xl border border-slate-200 shadow-sm">
             <h3 className="font-semibold text-lg mb-4">{qIndex + 1}. {q.text}</h3>
             <div className="space-y-3">
               {q.options.map((opt: string, optIndex: number) => (
@@ -151,7 +151,7 @@ export default function AssessmentPage({ params }: { params: { id: string } }) {
 
       {showConfirm && (
         <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl max-w-sm w-full">
+          <div className="bg-[#FAF9F6] p-6 rounded-xl max-w-sm w-full">
             <h3 className="font-bold text-lg mb-2">Confirm Submission</h3>
             <p className="text-slate-600 mb-6">Are you sure you want to submit your assessment? You cannot change your answers after submission.</p>
             <div className="flex justify-end space-x-3">
