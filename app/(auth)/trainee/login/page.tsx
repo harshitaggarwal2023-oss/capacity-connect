@@ -129,6 +129,15 @@ function TraineeLoginForm() {
         </button>
       </form>
 
+      <div className="mt-4 text-center">
+        <p className="text-xs text-slate-500">
+          Don&apos;t have an account?{" "}
+          <Link href="/trainee/signup" className="text-blue-600 font-semibold hover:underline">
+            Register here
+          </Link>
+        </p>
+      </div>
+
       {/* Google OAuth Option */}
       <div className="mt-6 pt-6 border-t border-slate-200 text-center">
         <button
