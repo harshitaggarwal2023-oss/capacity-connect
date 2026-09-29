@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
       redirect: true,
       redirectTo: "/admin/dashboard",
     });
-    if (res?.error) {
+    if ((res as any)?.error) {
       setError("Invalid credentials or access denied");
     }
   };

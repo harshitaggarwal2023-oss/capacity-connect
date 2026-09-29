@@ -1,0 +1,16 @@
+app/(admin)/admin/login/page.tsx(21,14): error TS2339: Property 'error' does not exist on type 'never'.
+app/(trainee)/trainee/courses/[id]/EnrollButton.tsx(32,6): error TS2322: Type '{ children: string; onClick: () => Promise<void>; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & LiquidMetalButtonProps'.
+  Property 'children' does not exist on type 'IntrinsicAttributes & LiquidMetalButtonProps'.
+app/(trainee)/trainee/courses/page.tsx(51,9): error TS2322: Type '{ key: string; card: { category: string; title: string; src: string; content: Element; }; index: number; }' is not assignable to type 'IntrinsicAttributes & { card: CardProps; }'.
+  Property 'index' does not exist on type 'IntrinsicAttributes & { card: CardProps; }'.
+app/(trainee)/trainee/results/page.tsx(32,43): error TS2339: Property 'questions' does not exist on type '{ course: { id: string; status: string; createdAt: Date; title: string; description: string; trainerId: string | null; }; } & { id: string; courseId: string; title: string; deadline: Date; timeLimit: number; passMark: number; }'.
+app/(trainee)/trainee/results/page.tsx(32,76): error TS2339: Property 'questions' does not exist on type '{ course: { id: string; status: string; createdAt: Date; title: string; description: string; trainerId: string | null; }; } & { id: string; courseId: string; title: string; deadline: Date; timeLimit: number; passMark: number; }'.
+app/api/enrollments/route.ts(30,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/api/messages/route.ts(63,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/api/profile/route.ts(59,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/page.tsx(34,16): error TS2559: Type '{ children: string; }' has no properties in common with type 'IntrinsicAttributes & LiquidMetalButtonProps'.
+components/ui/apple-cards-carousel.tsx(45,110): error TS2322: Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: "easeOut"; once: true; }; }' is not assignable to type 'boolean | TargetAndTransition | VariantLabels | LegacyAnimationControls | undefined'.
+  Types of property 'transition' are incompatible.
+    Object literal may only specify known properties, and 'once' does not exist in type 'Transition<any>'.
+components/ui/liquid-metal-button.tsx(29,28): error TS2554: Expected 3-9 arguments, but got 2.
+components/ui/liquid-metal-button.tsx(42,22): error TS2339: Property 'destroy' does not exist on type 'ShaderMount'.

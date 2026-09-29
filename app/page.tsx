@@ -31,9 +31,7 @@ export default async function LandingPage() {
               <NavbarButton variant="secondary">Log In</NavbarButton>
             </Link>
             <Link href="/trainee/signup">
-              <LiquidMetalButton>
-                Get Started
-              </LiquidMetalButton>
+              <LiquidMetalButton label="Get Started" />
             </Link>
           </div>
         </NavBody>

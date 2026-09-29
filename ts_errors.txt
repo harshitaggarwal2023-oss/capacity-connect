@@ -1,0 +1,44 @@
+app/(admin)/admin/courses/page.tsx(38,27): error TS7006: Parameter 'course' implicitly has an 'any' type.
+app/(admin)/admin/login/page.tsx(21,14): error TS2339: Property 'error' does not exist on type 'never'.
+app/(trainee)/trainee/assessments/page.tsx(23,46): error TS7006: Parameter 'course' implicitly has an 'any' type.
+app/(trainee)/trainee/assessments/page.tsx(24,24): error TS7006: Parameter 'quiz' implicitly has an 'any' type.
+app/(trainee)/trainee/assessments/page.tsx(28,11): error TS7006: Parameter 'a' implicitly has an 'any' type.
+app/(trainee)/trainee/assessments/page.tsx(28,14): error TS7006: Parameter 'b' implicitly has an 'any' type.
+app/(trainee)/trainee/assessments/page.tsx(38,27): error TS7006: Parameter 'quiz' implicitly has an 'any' type.
+app/(trainee)/trainee/courses/[id]/EnrollButton.tsx(32,6): error TS2322: Type '{ children: string; onClick: () => Promise<void>; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & LiquidMetalButtonProps'.
+  Property 'children' does not exist on type 'IntrinsicAttributes & LiquidMetalButtonProps'.
+app/(trainee)/trainee/courses/[id]/page.tsx(66,39): error TS7006: Parameter 'res' implicitly has an 'any' type.
+app/(trainee)/trainee/courses/[id]/page.tsx(84,37): error TS7006: Parameter 'quiz' implicitly has an 'any' type.
+app/(trainee)/trainee/courses/page.tsx(51,9): error TS2322: Type '{ key: string; card: { category: string; title: string; src: string; content: Element; }; index: number; }' is not assignable to type 'IntrinsicAttributes & { card: CardProps; }'.
+  Property 'index' does not exist on type 'IntrinsicAttributes & { card: CardProps; }'.
+app/(trainee)/trainee/dashboard/page.tsx(76,33): error TS7006: Parameter 'quiz' implicitly has an 'any' type.
+app/(trainee)/trainee/dashboard/page.tsx(112,31): error TS7006: Parameter 'notif' implicitly has an 'any' type.
+app/(trainee)/trainee/results/page.tsx(29,25): error TS7006: Parameter 'attempt' implicitly has an 'any' type.
+app/(trainee)/trainee/results/page.tsx(37,44): error TS7006: Parameter 'c' implicitly has an 'any' type.
+app/(trainer)/trainer/dashboard/page.tsx(19,35): error TS7006: Parameter 'acc' implicitly has an 'any' type.
+app/(trainer)/trainer/dashboard/page.tsx(19,40): error TS7006: Parameter 'curr' implicitly has an 'any' type.
+app/(trainer)/trainer/dashboard/page.tsx(81,27): error TS7006: Parameter 'a' implicitly has an 'any' type.
+app/(trainer)/trainer/quizzes/page.tsx(31,22): error TS7006: Parameter 'q' implicitly has an 'any' type.
+app/(trainer)/trainer/students/page.tsx(83,26): error TS7006: Parameter 'c' implicitly has an 'any' type.
+app/api/admin/notifications/route.ts(20,37): error TS7006: Parameter 'u' implicitly has an 'any' type.
+app/api/admin/users/route.ts(4,15): error TS2305: Module '"@prisma/client"' has no exported member 'Role'.
+app/api/assessments/[id]/submit/route.ts(46,29): error TS7006: Parameter 'q' implicitly has an 'any' type.
+app/api/assessments/[id]/submit/route.ts(46,32): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+app/api/enrollments/route.ts(30,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/api/messages/route.ts(63,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/api/profile/route.ts(59,47): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+app/api/trainer/quizzes/[id]/route.ts(35,35): error TS7006: Parameter 'q' implicitly has an 'any' type.
+auth.ts(7,15): error TS2305: Module '"@prisma/client"' has no exported member 'Role'.
+components/ui/apple-cards-carousel.tsx(45,110): error TS2322: Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: "easeOut"; once: true; }; }' is not assignable to type 'boolean | TargetAndTransition | VariantLabels | LegacyAnimationControls | undefined'.
+  Types of property 'transition' are incompatible.
+    Object literal may only specify known properties, and 'once' does not exist in type 'Transition<any>'.
+components/ui/liquid-metal-button.tsx(29,28): error TS2554: Expected 3-9 arguments, but got 2.
+components/ui/liquid-metal-button.tsx(42,22): error TS2339: Property 'destroy' does not exist on type 'ShaderMount'.
+lib/competency.ts(17,11): error TS7006: Parameter 'trainer' implicitly has an 'any' type.
+lib/competency.ts(20,51): error TS7006: Parameter 's' implicitly has an 'any' type.
+lib/competency.ts(28,12): error TS7006: Parameter 'a' implicitly has an 'any' type.
+lib/competency.ts(28,15): error TS7006: Parameter 'b' implicitly has an 'any' type.
+server/index.ts(1,21): error TS7016: Could not find a declaration file for module 'express'. '/Users/harshit/Desktop/sih/node_modules/express/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/express` if it exists or add a new declaration (.d.ts) file containing `declare module 'express';`
+server/index.ts(115,21): error TS7006: Parameter '_' implicitly has an 'any' type.
+server/index.ts(115,24): error TS7006: Parameter 'res' implicitly has an 'any' type.

@@ -7,10 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role { TRAINEE TRAINER ADMIN }
-enum ApprovalStatus { PENDING APPROVED REJECTED }
-enum AttemptStatus { ONGOING COMPLETED TIMEOUT }
-enum ResourceType { PDF PPT VIDEO }
+enum Role {
+  TRAINEE
+  TRAINER
+  ADMIN
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum AttemptStatus {
+  ONGOING
+  COMPLETED
+  TIMEOUT
+}
+
+enum ResourceType {
+  PDF
+  PPT
+  VIDEO
+}
 
 model User {
   id           String         @id @default(cuid())

@@ -26,20 +26,11 @@ export function LiquidMetalButton({
     if (!mountRef.current) return;
     
     // We try to mount the shader on the ref
-    const shaderInstance = new ShaderMount(mountRef.current, {
-      fragmentShader: liquidMetalFragmentShader,
-      uniforms: {
-        u_time: { value: 0 },
-        u_intensity: { value: 0.1 },
-        u_color1: { value: [0.95, 0.95, 0.96] }, // Light silver/metal
-        u_color2: { value: [0.8, 0.8, 0.85] }
-      }
-    });
-
+    const shaderInstance = new ShaderMount(mountRef.current, liquidMetalFragmentShader, {});
     setShader(shaderInstance);
 
     return () => {
-      shaderInstance.destroy();
+      shaderInstance.dispose();
     };
   }, []);
 

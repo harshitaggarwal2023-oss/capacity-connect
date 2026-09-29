@@ -29,8 +29,6 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
   };
 
   return (
-    <LiquidMetalButton onClick={handleEnroll} disabled={loading}>
-      {loading ? "Enrolling..." : "Enroll Now"}
-    </LiquidMetalButton>
+    <LiquidMetalButton onClick={handleEnroll} className={loading ? "opacity-50 pointer-events-none" : ""} label={loading ? "Enrolling..." : "Enroll Now"} />
   );
 }

@@ -29,7 +29,7 @@ export default async function ResultsPage() {
           {attempts.map(attempt => {
             const passMark = attempt.quiz.passMark;
             const score = attempt.score || 0;
-            const maxScore = attempt.quiz.questions?.length ? attempt.quiz.questions.length : 100; // approximation if questions not loaded
+            const maxScore = (attempt.quiz as any).questions?.length ? (attempt.quiz as any).questions?.length : 100; // approximation if questions not loaded
             // Let's compute actual percentage if possible. Wait, score is typically out of 100 or absolute. Assuming percentage here.
             const isPassed = score >= passMark;
 
