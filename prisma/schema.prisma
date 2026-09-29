@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role { TRAINEE TRAINER ADMIN }
+enum ApprovalStatus { PENDING APPROVED REJECTED }
+enum AttemptStatus { ONGOING COMPLETED TIMEOUT }
+enum ResourceType { PDF PPT VIDEO }
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  passwordHash String?        // null for Google OAuth Trainees
+  name         String
+  role         Role
+  status       ApprovalStatus @default(PENDING)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  profile       Profile?
+  enrollments   Enrollment[]
+  courses       Course[]       @relation("TrainerCourses")
+  attempts      Attempt[]
+  feedbacks     Feedback[]
+  messagesSent  Message[]      @relation("Sender")
+  messagesRecv  Message[]      @relation("Receiver")
+  notifications Notification[]
+  certificates  Certificate[]
+}
+
+model Profile {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName       String
+  qualifications String[]
+  skills         String[]
+  experience     String?
+  yearsExp       Int?
+  certifications String[]
+  competencyScore Int?    // cached score for admin competency mapping
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  trainerId   String?
+  trainer     User?    @relation("TrainerCourses", fields: [trainerId], references: [id])
+  status      String   @default("DRAFT")
+  createdAt   DateTime @default(now())
+
+  enrollments  Enrollment[]
+  resources    Resource[]
+  quizzes      Quiz[]
+  feedbacks    Feedback[]
+  announcements Announcement[]
+}
+
+model Enrollment {
+  id          String   @id @default(cuid())
+  traineeId   String
+  courseId    String
+  progress    Int      @default(0)
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+
+  user        User        @relation(fields: [traineeId], references: [id])
+  course      Course      @relation(fields: [courseId], references: [id])
+  certificate Certificate?
+
+  @@unique([traineeId, courseId])
+}
+
+model Resource {
+  id       String       @id @default(cuid())
+  courseId String
+  title    String
+  url      String       // Cloudinary URL
+  type     ResourceType
+  course   Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model Quiz {
+  id        String   @id @default(cuid())
+  courseId  String
+  title     String
+  deadline  DateTime
+  timeLimit Int      // minutes
+  passMark  Int      @default(60) // percent
+
+  course    Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  questions Question[]
+  attempts  Attempt[]
+}
+
+model Question {
+  id           String   @id @default(cuid())
+  quizId       String
+  text         String
+  options      String[]
+  correctIndex Int      // never sent to client
+  quiz         Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model Attempt {
+  id        String        @id @default(cuid())
+  quizId    String
+  traineeId String
+  startTime DateTime      @default(now())
+  endTime   DateTime?
+  answers   Int[]         // indices submitted
+  score     Int?
+  status    AttemptStatus @default(ONGOING)
+
+  quiz      Quiz @relation(fields: [quizId], references: [id])
+  user      User @relation(fields: [traineeId], references: [id])
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  courseId  String
+  traineeId String
+  rating    Int      // 1-5
+  comment   String?
+  createdAt DateTime @default(now())
+
+  course    Course @relation(fields: [courseId], references: [id])
+  user      User   @relation(fields: [traineeId], references: [id])
+}
+
+model Certificate {
+  id           String     @id @default(cuid())
+  enrollmentId String     @unique
+  userId       String
+  issuedAt     DateTime   @default(now())
+  url          String     // Cloudinary PDF URL
+
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  adminId     String
+  title       String
+  content     String
+  type        String   // ANNOUNCEMENT, ACHIEVEMENT, NEW_CONTENT
+  courseId    String?  // optional: linked course
+  publishedAt DateTime @default(now())
+
+  course      Course? @relation(fields: [courseId], references: [id])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  content    String
+  roomId     String   // course:{id} or user:{id}
+  read       Boolean  @default(false)
+  sentAt     DateTime @default(now())
+
+  sender     User @relation("Sender", fields: [senderId], references: [id])
+  receiver   User @relation("Receiver", fields: [receiverId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // QUIZ_DEADLINE, CERT_READY, ADMIN_ANNOUNCEMENT, TRAINEE_SUBMISSION
+  content   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
