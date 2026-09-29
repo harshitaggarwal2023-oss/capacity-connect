@@ -25,22 +25,33 @@ export function LiquidMetalButton({
   useEffect(() => {
     if (!mountRef.current) return;
     
-    // We try to mount the shader on the ref
-    const shaderInstance = new ShaderMount(mountRef.current, liquidMetalFragmentShader, {});
-    setShader(shaderInstance);
+    let shaderInstance: any = null;
+    try {
+      shaderInstance = new ShaderMount(mountRef.current, liquidMetalFragmentShader, {});
+      setShader(shaderInstance);
+    } catch (err) {
+      console.warn("ShaderMount initialization fallback:", err);
+    }
 
     return () => {
-      shaderInstance.dispose();
+      try {
+        if (shaderInstance && typeof shaderInstance.dispose === "function") {
+          shaderInstance.dispose();
+        }
+      } catch (e) {
+        // ignore cleanup error
+      }
     };
   }, []);
 
   useEffect(() => {
-    if (!shader) return;
-    // Animate intensity based on hover
-    if (isHovered) {
-      shader.uniforms.u_intensity.value = 0.8;
-    } else {
-      shader.uniforms.u_intensity.value = 0.2;
+    if (!shader || !shader.uniforms) return;
+    try {
+      if (shader.uniforms.u_intensity) {
+        shader.uniforms.u_intensity.value = isHovered ? 0.8 : 0.2;
+      }
+    } catch (err) {
+      // safe fallback
     }
   }, [isHovered, shader]);
 
@@ -62,7 +73,7 @@ export function LiquidMetalButton({
 
   return (
     <button
-      className={`relative overflow-hidden rounded-2xl flex items-center justify-center transition-all shadow-sm border border-slate-200/50 group ${
+      className={`relative overflow-hidden rounded-2xl flex items-center justify-center transition-all shadow-sm border border-slate-300/60 bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 group ${
         viewMode === "icon" ? "w-12 h-12" : "px-6 py-3 min-w-[140px]"
       } ${className}`}
       onMouseEnter={() => setIsHovered(true)}
@@ -84,7 +95,7 @@ export function LiquidMetalButton({
             animate={{ scale: 20, opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute bg-[\#FAF9F6]/40 rounded-full pointer-events-none"
+            className="absolute bg-white/40 rounded-full pointer-events-none"
             style={{ 
               left: ripple.x, 
               top: ripple.y,
