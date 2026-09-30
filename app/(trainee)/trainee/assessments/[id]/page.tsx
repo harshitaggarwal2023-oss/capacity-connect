@@ -95,12 +95,20 @@ export default function AssessmentPage({ params }: { params: Promise<{ id: strin
           <p className="text-slate-600 mb-8">
             Correct: {result.correct} / {result.totalQuestions}
           </p>
-          <button 
-            onClick={() => router.push("/trainee")}
-            className="px-4 py-2 bg-slate-900 text-white rounded-md"
-          >
-            Return to Dashboard
-          </button>
+          <div className="flex flex-col gap-2.5">
+            <button 
+              onClick={() => router.push("/trainee/dashboard")}
+              className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors cursor-pointer text-sm shadow-sm"
+            >
+              Return to Dashboard
+            </button>
+            <button 
+              onClick={() => router.push("/trainee/results")}
+              className="w-full py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-colors cursor-pointer text-xs"
+            >
+              View My Results
+            </button>
+          </div>
         </div>
       </div>
     );
