@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const write = (p, content) => {
-  const full = path.join('/Users/harshit/Desktop/sih', p);
+  const full = path.join(process.cwd(), p);
   fs.mkdirSync(path.dirname(full), { recursive: true });
   fs.writeFileSync(full, content.trim() + '\n');
 };

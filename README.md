@@ -110,17 +110,19 @@ graph TD
 
 ---
 
-## 🔑 Live Demo Credentials
+## 🔑 Live Demo Credentials & Test Accounts
 
-The platform is pre-seeded with sample users for immediate evaluation on the [Live Portal](https://capacityconnect-portal.vercel.app):
+The platform is pre-seeded with isolated demo personas for immediate jury and peer evaluation on the **[Live Portal](https://capacityconnect-portal.vercel.app)**. All accounts use dedicated sandboxed platform identities:
 
-| Role | Portal URL | Demo Email | Demo Password | Quick Sign In |
-| :--- | :--- | :--- | :--- | :--- |
-| **System Administrator** | [`/admin/login`](https://capacityconnect-portal.vercel.app/admin/login) | `admin@capacityconnect.in` | `admin123` | 1-Click Admin Button |
-| **Certified Trainer** | [`/trainer/login`](https://capacityconnect-portal.vercel.app/trainer/login) | `teacher@capacityconnect.in` | `trainer123` | 1-Click Trainer Button |
-| **Public Trainee** | [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) | `trainee@capacityconnect.in` | `trainee123` | 1-Click Trainee Button |
+| Role | Portal Route | Demo ID / Email | Demo Password | Quick Access | What to Test |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **State Administrator** | [`/admin/login`](https://capacityconnect-portal.vercel.app/admin/login) | `admin@capacityconnect.in` | `admin123` | **1-Click Admin Button** | • Executive Analytics Command Center<br>• Real-time Course Archival / Publishing<br>• State User Approvals & Circular Broadcasts |
+| **Certified Trainer** | [`/trainer/login`](https://capacityconnect-portal.vercel.app/trainer/login) | `teacher@capacityconnect.in` | `trainer123` | **1-Click Trainer Button** | • MCQ Question Bank Authoring<br>• Curriculum & Syllabus PDF uploads<br>• Real-time Course Room Mentorship Chat |
+| **Civil Service Trainee** | [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) | `trainee@capacityconnect.in` | `trainee123` | **1-Click Trainee Button** | • Timed Anti-Cheat Assessments<br>• Cryptographic QR Completion Certificates<br>• Interactive Skill Gap & Competency Streaks |
 
-> 💡 **Google OAuth:** You can also use **"Continue with Google"** on [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) or [`/trainee/signup`](https://capacityconnect-portal.vercel.app/trainee/signup) with your own Google account.
+> 💡 **Google OAuth Alternative:** You can also click **"Continue with Google"** on [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) or register a new trainee on [`/trainee/signup`](https://capacityconnect-portal.vercel.app/trainee/signup) using any standard email address.
+
+> 🔒 **Security Notice:** All evaluation credentials in this repository use standardized demo identifiers (`@capacityconnect.in`). No personal email addresses, production passwords, or private access tokens are baked into the codebase. Local environment configurations are fully isolated via `.env` / `.env.local` (enforced via `.gitignore`).
 
 ---
 
