@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding CAPACITY CONNECT initial platform data...");
 
-  // 1. User's requested Admin account
+  // 1. Platform Admin account
   const adminPasswordHash = await bcrypt.hash("admin123", 12);
   const admin = await prisma.user.upsert({
     where: { email: "admin@capacityconnect.in" },
@@ -17,7 +17,7 @@ async function main() {
     },
     create: {
       email: "admin@capacityconnect.in",
-      name: "Harshit Aggarwal (Admin)",
+      name: "State Administrator",
       passwordHash: adminPasswordHash,
       role: "ADMIN",
       status: "APPROVED",

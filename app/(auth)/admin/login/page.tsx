@@ -105,7 +105,7 @@ function AdminLoginForm() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="admin123"
+            placeholder="••••••••"
             className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] text-sm"
           />
         </div>

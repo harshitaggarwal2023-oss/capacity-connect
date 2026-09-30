@@ -114,11 +114,11 @@ graph TD
 
 The platform is pre-seeded with sample users for immediate evaluation on the [Live Portal](https://capacityconnect-portal.vercel.app):
 
-| Role | Portal URL | Email | Password |
-| :--- | :--- | :--- | :--- |
-| **System Administrator** | [`/admin/login`](https://capacityconnect-portal.vercel.app/admin/login) | `admin@capacityconnect.in` | `admin123` |
-| **Certified Trainer** | [`/trainer/login`](https://capacityconnect-portal.vercel.app/trainer/login) | `teacher@capacityconnect.in` | `trainer123` |
-| **Public Trainee** | [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) | `trainee@capacityconnect.in` | `trainee123` |
+| Role | Portal URL | Demo Email | Demo Password | Quick Sign In |
+| :--- | :--- | :--- | :--- | :--- |
+| **System Administrator** | [`/admin/login`](https://capacityconnect-portal.vercel.app/admin/login) | `admin@capacityconnect.in` | `admin123` | 1-Click Admin Button |
+| **Certified Trainer** | [`/trainer/login`](https://capacityconnect-portal.vercel.app/trainer/login) | `teacher@capacityconnect.in` | `trainer123` | 1-Click Trainer Button |
+| **Public Trainee** | [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) | `trainee@capacityconnect.in` | `trainee123` | 1-Click Trainee Button |
 
 > 💡 **Google OAuth:** You can also use **"Continue with Google"** on [`/trainee/login`](https://capacityconnect-portal.vercel.app/trainee/login) or [`/trainee/signup`](https://capacityconnect-portal.vercel.app/trainee/signup) with your own Google account.
 
